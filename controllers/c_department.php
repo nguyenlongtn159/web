@@ -9,7 +9,6 @@ class C_department
         $msg = isset($_SESSION["msg"]) ? $_SESSION["msg"] : "";
         if (isset($_SESSION["msg"])) unset($_SESSION["msg"]);
         //end thong bao
-
         //model
         include("../controllers/Pager.php");
         include("../models/m_department.php");

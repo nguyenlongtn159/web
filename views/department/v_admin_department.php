@@ -52,7 +52,7 @@ Danh sách phòng ban:
             $page = $pages;
         }
 
-        echo "</table><a href='?page=" . ($page - 1) . "'>&lt;&lt; Trang trước(" . ($page - 1) . ")</a> [" . $page . "] <a href='?page=" . ($page + 1) . "'>Trang tiếp(" . ($page + 1) . ")>></a>";
+        echo "</table><a href='?view=Department&page=" . ($page - 1) . "'>&lt;&lt; Trang trước(" . ($page - 1) . ")</a> [" . $page . "] <a href='?view=Department&page=" . ($page + 1) . "'>Trang tiếp(" . ($page + 1) . ")>></a>";
     }
 
     ?>

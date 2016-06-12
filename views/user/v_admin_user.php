@@ -6,6 +6,13 @@ Danh sách user:
 <a href="register.php">[ Thêm user ]</a><br /><br />
 <table class="table table-hover"><tr class="active"><td>Mã user: </td><td>Tên :</td><td>Password: </td><td>Email: </td><td></td><td></td></tr>
 <?php
+    $page = $_GET['page'];
+    if ($page < 1) {
+        $page = 1;
+    } else if ($page > $pages) {
+        $page = $pages;
+    } else {
+
 
 foreach($users as $user)
 {
@@ -22,9 +29,23 @@ foreach($users as $user)
 	
 	
 }
+}
+    if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/user_ajax.php') == 0) {
+        echo "</table><div class='col-md-4'>" . $lst . "</div>";
+    } //echo "</table>".$_SERVER['PHP_SELF'];
+    else {
+        $page = $_GET['page'];
+        if ($page <= 1) {
+            $page = 1;
+        } else if ($page > $pages) {
+            $page = $pages;
+        }
 
-echo "</table><div class='col-md-4'>".$lst."</div>";
-?>
+        echo "</table><a href='?view=User&page=" . ($page - 1) . "'>&lt;&lt; Trang trước(" . ($page - 1) . ")</a> [" . $page . "] <a href='?view=User&page=" . ($page + 1) . "'>Trang tiếp(" . ($page + 1) . ")>></a>";
+    }
+
+    ?>
+
 
 <script type="text/javascript">
 function del_user(id)

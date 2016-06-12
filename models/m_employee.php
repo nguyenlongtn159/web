@@ -4,6 +4,12 @@ require_once("database.php");
 class M_employee extends database
 {
     //nguoi dung
+    	public function Read_full_employee()
+	{
+		$sql ="select * from employee";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
     public function Read_employee($vt = -1, $limit = -1) // them de phan trang
     {
         $sql = "select * from employee";
@@ -34,6 +40,12 @@ class M_employee extends database
         $this->setQuery($sql);
         $param = array($id);
         return $this->loadRow($param);
+    }
+     public function Read_all_employee_with_name($name)
+    {  
+        $sql = "select * from employee where name like '%$name%'";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
     }
 
     public function Get_name_by_id($id){
@@ -80,17 +92,31 @@ class M_employee extends database
         $param = array($id);
         return $this->execute($param); // mang tham so (options)
     }
-
-    function timkiem($keyword)
-    {
+ function so_luong_kq_timkiem($keyword,$depart){
         if ($keyword != "") {
-            $sql = "select * from employee where name like '%$keyword%' ";
+            $sql = "select * from employee where name like '%$keyword%'  && department='$depart'";
         }
-        /* else
-        {
-            $sql = "select * from employee where name=''";
-
-        }  */
+        $this->setQuery($sql);
+        return $this->loadAllRows();
+    }
+    function timkiem($gttim,$depart,$vt = -1,$limit = -1)
+    {
+        if ($gttim != "" && $gttim != "all" && $depart != "all") {
+            $sql = "select * from employee where name like '%$gttim%' && department='$depart' ";
+        }
+        else if($gttim != "" && $gttim != "all" && $depart == "all") {
+               $sql = "select * from employee where name like '%$gttim%'";
+        }
+         else if($gttim == "all" && $depart != "all"){
+               $sql = "select * from employee where department='$depart'";
+        }
+         else {
+               $sql = "select * from employee";   
+        }
+        
+            if ($vt >= 0 && $limit > 0) {
+            $sql .= " limit $vt,$limit"; // noi tiep
+        } 
         $this->setQuery($sql);
         return $this->loadAllRows();
     }

@@ -1,7 +1,8 @@
-<?php 
-include("../controllers/c_employee.php");
-$c_employee = new C_employee();
-$c_employee->Hien_thi_employee();
+
+ <?php
+include("../controllers/c_user.php");
+$c_user = new C_user();
+$c_user->Read_full_user();
 if(isset($_GET["views"]) && ($_GET["views"] != $_COOKIE["view"])){
     unset($_COOKIE["view"]);
     $cookie_name = "view";

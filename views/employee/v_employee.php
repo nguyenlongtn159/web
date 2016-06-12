@@ -3,34 +3,50 @@
 
 <div class="panel panel-success">
     <div class="panel-heading">
-        <h3 class="panel-title">Xem theo department:</h3>
+       
     </div>
     <div class="panel-body">
-        <form action="employee.php" method="post" class="form-inline" id="indexForm" accept-charset="utf-8">
-            <div class="form-group">
-                <label class="sr-only" for="Name">s</label>
-                <input name="name" class="form-control" placeholder="Employee Name" type="text" id="name"/>
-            </div>
-            <div class="form-group">
-                <label class="sr-only" for="DepartmentId"></label>
+   <h3>Danh sách nhân viên:</h3> 
+    
+   
+    <?php
+    //echo $_SERVER['PHP_SELF'];
+    if(substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/employee.php') == 1){
+   /*  if (isset($_SERVER['HTTP_REFERER']) && substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/employee_ajax.php') == 0 && substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/index.php') == 0){ */
+    echo '<div class="form-inline">
+            <label class="sr-only" for="DepartmentId"></label>
                 <select name="department" class="form-control" id="department_id">
-                    <option value="">All</option>
-                    <?php
+                    <option value="all" selected>All</option>';
+                    
                     foreach ($departments as $phong) {
                         echo "<option value='$phong->name'>";
                         echo $phong->name;
                         echo "</option>";
                     }
-                    ?>
-                </select>
-            </div>
-            <button class="btn btn-success" type="submit">Search</button>
-            <button class="btn btn-default btn-clear" type="button">Clear</button>
-        </form>
-    </div>
+                   
+                 
+                    echo '</select>
+                <label class="sr-only" for="Name"></label>
+                <input name="name" onkeyup="Tim_employee2();" class="form-control" placeholder="Employee Name" type="text" id="name_employee" value="' ;
+                if(isset($_COOKIE["gttim"])){
+                echo $_COOKIE["gttim"];
+                }
+                 echo '"/>
+            Sau khi thay đổi tên xong! Nhấn Enter để tìm!';
+            }
+            else echo " <span class='panel-body'><h4>Xem/tìm nhân viên theo department: <a href='employee.php'> Sử dụng tìm kiếm</a></h4></span>";
+            ?>
+            
+                
+            
+             <script type="text/javascript" src="../public/js/thu_vien_ajax.js"></script>
+         <!--   <button class="btn btn-success" onclick="Tim_employee2()">Search</button>
+            <button class="btn btn-default btn-clear" type="button">Clear</button> -->
+            
 </div>
 
-Danh sách nhân viên:
+<div id="hienthi2">
+
 <h3 align="center" style="color:red"><?php if (isset($msg)) {
         echo $msg;
     } ?> </h3>
@@ -49,12 +65,8 @@ Danh sách nhân viên:
 
 
     <?php
-    if (isset($_GET['p'])) {
-        $page = $_GET['p'];
-    } else {
-        $page = $_GET['page'];
-    }
-
+ 
+    $page = $_GET['page'];
     if ($page < 1) {
         $page = 1;
     } else if ($page > $pages) {
@@ -76,22 +88,20 @@ Danh sách nhân viên:
     if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/employee_ajax.php') == 0) {
         echo "</table><div class='col-md-4'>" . $lst . "</div>";
     } else {
-        if (isset($_GET['p'])) {
-            $page = $_GET['p'];
-        } else {
+        
             $page = $_GET['page'];
-        }
 
         if ($page <= 1) {
             $page = 1;
         } else if ($page > $pages) {
             $page = $pages;
         }
-        echo "</table><a href='index.php?p=" . ($page - 1) . "'>&lt;&lt; Trang trước(" . ($page - 1) . ")</a> [" . $page . "] <a href='index.php?p=" . ($page + 1) . "'>Trang tiếp(" . ($page + 1) . ")>></a>";
+
+        echo "</table><a href='index.php?views=Employee&page=" . ($page - 1) . "'>&lt;&lt; Trang trước(" . ($page - 1) . ")</a> [" . $page . "] <a href='index.php?views=Employee&page=" . ($page + 1) . "'>Trang tiếp(" . ($page + 1) . ")>></a>";
     }
 
     ?>
-
+</div>
     <script type="text/javascript">
         function del_employee(id) {
             if (confirm("Bạn muốn xóa bỏ nhân viên này ?")) {
@@ -99,5 +109,4 @@ Danh sách nhân viên:
             }
         }
     </script>
-    <script type="text/javascript" src="../public/js/thu_vien_ajax.js">
-    </script>
+   

@@ -80,7 +80,7 @@ function showDepartment() {
         }
     }
     //3 mo lien ket den may chu
-    xmlhttp.open("GET", "department_ajax.php?page=" + gg, true); //sd post nhieu hon
+    xmlhttp.open("GET", "department_ajax.php?views=Department&page=" + gg, true); //sd post nhieu hon
     xmlhttp.send();
 
 }
@@ -108,7 +108,31 @@ function showEmployee() {
         }
     }
     //3 mo lien ket den may chu
-    xmlhttp.open("GET", "employee_ajax.php?p=" + gg, true); //sd post nhieu hon
+    xmlhttp.open("GET", "employee_ajax.php?views=Employee&page=" + gg, true); //sd post nhieu hon
+    xmlhttp.send();
+
+}
+function showUser() {
+     var sel = document.getElementById("mySelect").selectedIndex;
+     var opt = document.getElementsByTagName("option")[sel].value;
+    var gg = document.getElementById("page").value;
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        //ie5, ie 6
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    //2 - tra ket qua sau khi thi hanh xong
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) // su ly hoan thanh va tim thay trang
+        {
+            document.getElementById("hienthi").innerHTML = xmlhttp.responseText;
+        }
+    }
+    //3 mo lien ket den may chu
+    xmlhttp.open("GET", "user_ajax.php?views=" + opt + "&page=" + gg, true); //sd post nhieu hon
     xmlhttp.send();
 
 }
@@ -134,6 +158,36 @@ function Tim_employee(gttim) {
     xmlhttp.open("POST", "xl_tim_employee.php", true); //sd post nhieu hon
     var data = new FormData();
     data.append("gttim", gttim) // ten,gt
+    //4-gui thong tin
+    xmlhttp.send(data);
+}
+function Tim_employee2() {
+    var gttim = document.getElementById("name_employee").value;
+    var x = document.getElementById("department_id").selectedIndex;
+     var department = document.getElementsByTagName("option")[x].value;
+   
+    //ajax
+    //1-khai bao & khoi tao doi tuong Ajax
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    }
+    else {
+        //ie5, ie 6
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    //2 - tra ket qua sau khi thi hanh xong
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) // su ly hoan thanh va tim thay trang
+        {
+            document.getElementById("hienthi2").innerHTML = xmlhttp.responseText;
+        }
+    }
+    //3 mo lien ket den may chu
+    xmlhttp.open("POST", "xl_tim_employee.php", true); //sd post nhieu hon
+    var data = new FormData();
+    data.append("gttim", gttim); // ten,gt
+    data.append("department", department);
     //4-gui thong tin
     xmlhttp.send(data);
 }

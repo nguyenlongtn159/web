@@ -4,18 +4,14 @@ include("../models/m_employee.php");
 //session_start();
 class C_employee
 {
-    //lang nghe, nguoi dung tac dong tren mon an >> lay view,model nao tra ve
-    /*public function Hien_thi_employee()
-    {
-        //models
-        $m_employee = new M_employee();
-        $employees = $m_employee->Read_employee(); // ok can../models
-        //views
-        include("../views/employee/v_employee.php");
-    }
-    */
     public function Hien_thi_employee()
     {
+        if(isset($_GET["views"]) && isset($_SESSION["views"])){
+            $a = $_GET["views"]; 
+          $_SESSION["views"] =  $a;
+        //  echo $_GET["views"];
+        }
+        
         //thong bao
         $msg = isset($_SESSION["msg"]) ? $_SESSION["msg"] : "";
         if (isset($_SESSION["msg"])) unset($_SESSION["msg"]);
@@ -41,12 +37,8 @@ class C_employee
         $count = count($employee);
         $vt = $p->findStart($limit);
         $pages = $p->findPages($count, $limit);
-        if (isset($_GET["p"]))  // index ajax dung p, page de phan biet
-        {
-            $curpage = $_GET["p"];
-        } else {
-            $curpage = $_GET["page"];
-        }
+        $curpage = $_GET["page"];
+        
 
         $lst = $p->pageList($curpage, $pages);
         if (isset($_POST["department"])) {
@@ -101,13 +93,7 @@ class C_employee
         $count = count($employee);
         $vt = $p->findStart($limit);
         $pages = $p->findPages($count, $limit);
-        if (isset($_GET["p"]))  // index ajax dung p, page de phan biet
-        {
-            $curpage = $_GET["p"];
-        } else {
-            $curpage = $_GET["page"];
-        }
-
+        $curpage = $_GET["page"];
         $lst = $p->pageList($curpage, $pages);
         if (isset($_POST["department"])) {
             $_SESSION["department"] = $_POST["department"];
@@ -176,7 +162,7 @@ class C_employee
             $hinh = $_FILES["hinh"]["error"] == 0 ? $_FILES["hinh"]["name"] : ""; //neu co hinh thi lay ten hinh,: khong thi de rong
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 //$emailErr = "Invalid email format";
-                echo "Email kh�ng h?p l?!";
+                echo "Email không hợp lệ";
             } else {
                 $m_employee = new M_employee();
                 $kq = $m_employee->Add_employee($name, $department, $job_title, $email, $hinh);

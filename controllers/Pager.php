@@ -9,9 +9,7 @@ class Pager
 	***/
 	public function findStart($limit)
 	{
-		if((!isset($_GET['p'])))
-		{
-		if((!isset($_GET['page'])) || ($_GET['page'] == "1"))
+	   if((!isset($_GET['page'])) || ($_GET['page'] == "1"))
 		{
 			$start = 0;
 			$_GET['page'] = 1;
@@ -19,17 +17,6 @@ class Pager
 		else
 		{
 			$start = ($_GET['page']-1) * $limit;
-		}
-		}
-		else 
-		{
-			if(($_GET['p'] == "1"))
-			{
-			$start = 0;
-			$_GET['p'] = 1;	
-			}
-			else
-					$start = ($_GET['p']-1) * $limit;
 		}
 		return $start;
 	}
