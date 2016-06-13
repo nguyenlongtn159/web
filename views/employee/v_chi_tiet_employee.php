@@ -1,17 +1,37 @@
-<html><head><title> Chi tiết nhân viên </title>
-<link rel="stylesheet" type="text/css" href="../public/bootstrap/dist/css/bootstrap.min.css">
-</head>
-<body>
+<?php include("../views/navigation/begin_navigation.php"); ?>
 
-<div class="">
-<h3><?php echo $employee->name ?></h3><br />
-Avatar: <br /><img src="../public/images/employee/<?php echo $employee->hinh ?>"  />
-    <br /><?php echo 'Derpartment: '.print_r($employee); ?>
-<br /><?php echo 'Derpartment: '.$employee->department; ?>
-<br /><?php echo 'Chức danh: '.$employee->job_title; ?>
-<br /><?php echo 'Email: '.$employee->email; ?>
-<br />
-</div>
+    <head><title> Chi tiết nhân viên </title>
+    <div class="">
+        <div id="img_zone">
+            <img class="img-circle" width="250px" height="auto" src="../public/images/employee/<?php echo $employee->hinh ?>"/>
+        </div>
+        <div id="detail_zone" class="col-sm-6">
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <td>Tên</td>
+                    <td><?php echo $employee->name ?></td>
+                </tr>
+                <tr>
+                    <td>Phòng ban</td>
+                    <td><?php echo $employee->department; ?></td>
+                </tr>
+                <tr>
+                    <td>Chức vụ</td>
+                    <td><?php echo $employee->job_title; ?></td>
+                </tr>
+                <tr>
+                    <td>Số điện thoại</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><?php echo $employee->email; ?></td>
+                </tr>
+                </tbody>
+            </table>
+            <a href="employee.php" class="btn btn-success">Quay lại</a>
+        </div>
+    </div>
 
-</body>
-</html>
+<?php include("../views/navigation/end_navigation.php"); ?>

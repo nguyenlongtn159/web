@@ -13,7 +13,6 @@ Danh sách phòng ban:
         <td>Manager:</td>
         <td></td>
         <td></td>
-        <td></td>
     </tr>
 
     <?php
@@ -35,8 +34,8 @@ Danh sách phòng ban:
             echo "<td> " . $phong->office_phone . "</td>";
             echo "<td> " .$m_employ->Get_name_by_id($phong->manager)."</td>";//Lấy tên quản lý theo id
             echo "<td><a href='chi_tiet_employee.php?id=" . $phong->manager . "' id='hienthi" . $phong->manager . "'></a></td>";
-            echo "<td><a href='edit_department.php?id=" . $phong->id . "'> [ Chỉnh sửa ] </a></td>";
-            echo "<td><a href='javascript:void(0)' onclick='del_department(" . $phong->id . ")'> [ Xóa ] </a></td></tr>";
+            echo "<td><a href='edit_department.php?id=" . $phong->id . "' class='btn btn-info'> Chỉnh sửa </a>
+            <a href='javascript:void(0)' onclick='del_department(".$phong->id.")' class='btn btn-danger '> Xóa </a></td></tr>";
 
 
         }
@@ -51,7 +50,7 @@ Danh sách phòng ban:
         } else if ($page > $pages) {
             $page = $pages;
         }
-
+        
         echo "</table><a href='?view=Department&page=" . ($page - 1) . "'>&lt;&lt; Trang trước(" . ($page - 1) . ")</a> [" . $page . "] <a href='?view=Department&page=" . ($page + 1) . "'>Trang tiếp(" . ($page + 1) . ")>></a>";
     }
 

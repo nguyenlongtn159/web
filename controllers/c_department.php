@@ -92,7 +92,7 @@ class C_department
         //read employee
         include("../controllers/Pager.php");
         $p = new pager();
-        $limit = 2;
+        $limit = 100;
         $count = count($department);
         $vt = $p->findStart($limit);
         $pages = $p->findPages($count, $limit);
