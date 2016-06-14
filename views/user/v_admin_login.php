@@ -11,7 +11,11 @@
     </div>
     <button type="submit" class="btn btn-default">Sign in</button>
     <br/>
-    Chưa có tài khoản? Liên hệ với quản lý!<br/>
+    <?php if(isset($_SESSION["msg2"]))
+  {
+    echo $_SESSION["msg2"];
+    unset($_SESSION["msg2"]); 
+  } ?>Chưa có tài khoản? Liên hệ với quản lý!<br/>
     Quên mật khẩu: <a href="get_pass.php">Lấy lại mật khẩu!</a>
 </form>
 

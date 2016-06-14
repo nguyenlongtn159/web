@@ -30,6 +30,12 @@ class M_department extends database
 		$this->setQuery($sql);
 		return $this->loadRow(array($id)); // truyen tham so qua ma loai
 	}
+	  public function Read_all_department_with_name($name)
+    {  
+        $sql = "select * from department where name like '$name'";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
+    }
 	public function Add_department($name,$office_phone,$manager) // chi can ten,mo ta, hinh
 	{
 		$sql="INSERT INTO department VALUES(?,?,?,?)";

@@ -17,7 +17,7 @@ class C_user
         $m_user = new M_user();
         $users = $m_user->Read_full_user();
         $p = new pager();
-        $limit = 2;
+        $limit = 4;
         $count = count($users);
         $vt = $p->findStart($limit);
         $pages = $p->findPages($count, $limit);
@@ -80,12 +80,12 @@ class C_user
             if (count($user) > 0) {//dang nhap thanh cong
                 session_start();
                 $_SESSION["name"] = $_POST["name"];
-                $_SESSION["msg"] = "dang nhap thanh cong";
+                $_SESSION["msg"] = "<h3 style='color:crimson;'><center>Đăng nhập thành công</center></h3>";
 
                 header("Location:index.php");
 
             } else {
-                echo "Ten dang nhap hoac mat khau khong dung";
+                 $_SESSION["msg2"] = "<span style='color:crimson;'>Sai tên đăng nhập hoặc mật khẩu!</span><br />";
             }
 
         }
@@ -101,7 +101,7 @@ class C_user
         $kq = $m_user->edit_user($id);
         if($kq){
             echo "Cập nhật thành công";
-            header("location:user.php");
+            header("Location:user.php");
         }
         else {
             echo "Cập nhật thất bại";
@@ -120,11 +120,11 @@ class C_user
 		
 		//read employee
 		
-		//view
-				include("../views/user/v_admin_edit_user.php");
+		
 		
 		if(isset($_POST["Capnhat"]))
 		{
+
 			$name=$_POST["Username"];
 			$pass=$_POST["pass"];
 			$email=$_POST["email"];
@@ -134,15 +134,19 @@ class C_user
 			if($kq) // cap nhat thanh cong
 			{	
 				$_SESSION["msg"]="Sửa user ".$name." thành công";
+                	header("location:user.php");
 			}
 			else
 			{
 				$_SESSION["msg"]="Sửa user ".$name." bị lỗi";
+                	header("location:user.php");
 			}
+            //view
+			
 			//chuyen den trang danh sach user
-				header("location:user.php");
+			
 		}
-		
+			include("../views/user/v_admin_edit_user.php");
 	}
 
     public function Del_user()

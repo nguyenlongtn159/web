@@ -1,4 +1,4 @@
-<?php include("../views/navigation/begin_navigation.php"); ?>
+<?php include_once("../views/navigation/begin_navigation.php"); ?> 
 
 <form class="form-horizontal" method="post" onSubmit="return check();">
     <div class="form-group">

@@ -7,7 +7,7 @@ session_start();
         <div id='xac_thuc' style='position: fixed; top: 15px; right: 15px'>
 		    Chào:<span style='color:red'> ". $_SESSION["name"]." </span>
 		    <a href='logout.php'> Đăng xuất </a><br />
-		    <a href='user.php'> Quản lý tài khoản </a></p>
+		    </p>
 		</div>";
     }
 ?>

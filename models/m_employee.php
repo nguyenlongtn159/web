@@ -101,13 +101,13 @@ class M_employee extends database
     }
     function timkiem($gttim,$depart,$vt = -1,$limit = -1)
     {
-        if ($gttim != "" && $gttim != "all" && $depart != "all") {
+        if ($gttim != "" && $depart != "all") {
             $sql = "select * from employee where name like '%$gttim%' && department='$depart' ";
         }
-        else if($gttim != "" && $gttim != "all" && $depart == "all") {
+        else if($gttim != "" && $depart == "all") {
                $sql = "select * from employee where name like '%$gttim%'";
         }
-         else if($gttim == "all" && $depart != "all"){
+         else if($gttim == "" && $depart != "all"){
                $sql = "select * from employee where department='$depart'";
         }
          else {

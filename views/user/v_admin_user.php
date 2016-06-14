@@ -1,6 +1,6 @@
-
+<?php include_once("../views/navigation/begin_navigation.php"); ?> 
 <h3 align="center" style="color:red"> <?php if(isset($msg)){echo $msg;} ?> </h3>
-<link rel="stylesheet" type="text/css" href="../public/bootstrap/dist/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="../public/bootstrap/bootstrap.min.css">
 
 Danh sách user:
 <a href="register.php">[ Thêm user ]</a><br /><br />

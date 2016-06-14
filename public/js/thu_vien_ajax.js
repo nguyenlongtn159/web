@@ -113,7 +113,7 @@ function showEmployee() {
 
 }
 function showUser() {
-     var sel = document.getElementById("mySelect").selectedIndex;
+     var sel = document.getElementById("mySelect2").selectedIndex;
      var opt = document.getElementsByTagName("option")[sel].value;
     var gg = document.getElementById("page").value;
     var xmlhttp;
@@ -163,8 +163,11 @@ function Tim_employee(gttim) {
 }
 function Tim_employee2() {
     var gttim = document.getElementById("name_employee").value;
-    var x = document.getElementById("department_id").selectedIndex;
-     var department = document.getElementsByTagName("option")[x].value;
+   // var x = document.getElementById("department_id3").selectedIndex;
+    // var department = document.getElementsByTagName("option")[x].value;
+  // var department = document.getElementById("myOption").value;
+       var selector = document.getElementById('department_id3');
+    var department = selector[selector.selectedIndex].value;
    
     //ajax
     //1-khai bao & khoi tao doi tuong Ajax
@@ -180,14 +183,14 @@ function Tim_employee2() {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) // su ly hoan thanh va tim thay trang
         {
-            document.getElementById("hienthi2").innerHTML = xmlhttp.responseText;
+            document.getElementById("hienthi").innerHTML = xmlhttp.responseText;
         }
     }
     //3 mo lien ket den may chu
     xmlhttp.open("POST", "xl_tim_employee.php", true); //sd post nhieu hon
     var data = new FormData();
     data.append("gttim", gttim); // ten,gt
-    data.append("department", department);
+    data.append("department2", department);
     //4-gui thong tin
     xmlhttp.send(data);
 }

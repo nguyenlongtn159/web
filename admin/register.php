@@ -5,7 +5,8 @@ $c_user->Register();
 // 333
 ?>
 </strong></div>
-<link rel="stylesheet" type="text/css" href="../public/bootstrap/dist/css/bootstrap.min.css">
+<?php include_once("../views/navigation/begin_navigation.php"); ?> 
+<link rel="stylesheet" type="text/css" href="../public/bootstrap/bootstrap.min.css">
 <form class="form-horizontal" method="post"  onSubmit="return check();">
   <div class="form-group">
     <label for="Username" class="col-sm-2 control-label">Username</label>

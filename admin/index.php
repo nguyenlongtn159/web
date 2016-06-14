@@ -10,7 +10,9 @@ else{
      $cookie_value = "Department";
      setcookie($cookie_name, $cookie_value, time() + 3600, "/");
 } */
-include("../views/navigation/begin_navigation.php");
+include_once("../views/navigation/begin_navigation.php");
+//echo $_SERVER['HTTP_REFERER'];
+//echo $_SERVER['PHP_SELF'];
 
 
   if(isset($_SESSION["msg"]))
@@ -20,8 +22,9 @@ include("../views/navigation/begin_navigation.php");
   }
 ?>
     <meta charset="UTF-8">
+    <script type="text/javascript" src="../public/js/thu_vien_ajax.js"></script>
     <div class="container-fluid">Chọn phần muốn xem:<br/>
-        <select id="mySelect" class="btn btn-default" onchange="myFunction()">
+        <select id="mySelect2" class="btn btn-default" name="gg"onchange="myFunction()">
             <?php
             if ($_COOKIE["view"] == "Employee") {
                 echo '<option value="Department">Department</option><option value="Employee" selected>Employee</option>
@@ -39,18 +42,42 @@ include("../views/navigation/begin_navigation.php");
             }
             ?>
             </select>
-       <!-- <table align="center" width="600px" border="0" cellpading="15px" bgcolor="#FEF3CB">
+       <table align="center" width="600px" border="0" cellpading="15px" bgcolor="#FEF3CB">
             <tr>
                 <td align="center">
-                    <label>Nhập tên nhân viên cần tìm: </label><input type="text" name="keyword" value=""
-                                                                      onkeyup="Tim_employee(this.value)"/>
+                    <?php
+//echo $_SERVER['PHP_SELF'];
+//if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/employee.php') == 1) {
+    /*  if (isset($_SERVER['HTTP_REFERER']) && substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/employee_ajax.php') == 0 && substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/index.php') == 0){ */
+    echo '<div class="form-inline">Tìm nhân viên: 
+            <label class="sr-only" for="DepartmentId"></label>
+                <select name="department3" class="form-control" id="department_id3" onchange="Tim_employee2();">
+                    <option id="myOption" value="all" selected>All</option>';
+require_once("../models/m_department.php");
+$m_department_2 = new M_department();
+        $departments = $m_department_2->Read_full_department();
+    foreach ($departments as $phong) {
+        echo "<option id='myOption' value='$phong->name'>";
+        echo $phong->name;
+        echo "</option>";
+   }
+
+
+    echo '</select>
+                <label class="sr-only" for="Name"></label>
+                <input name="name" onkeyup="Tim_employee2();" class="form-control" placeholder="Employee Name" type="text" id="name_employee" value="';
+   /* if (isset($_COOKIE["gttim"])) {
+        echo $_COOKIE["gttim"];
+    } */
+  if(isset($_SESSION["gttim"])) { echo $_SESSION["gttim"]; }
+    echo '"/>'; ?>
                 </td>
             </tr>
-        </table> -->
+        </table> 
 
-<script type="text/javascript" src="../public/js/thu_vien_ajax.js"></script>
+
         <div id="hienthi"></div>
-        <input type="number" name="page" id="page" value="<?php
+       <div style="visibility: hidden"> <input type="number" name="page" id="page" value="<?php
         if (isset($_GET['page'])) {
             $page = $_GET['page'];
             if ($page <= 1) {
@@ -58,12 +85,12 @@ include("../views/navigation/begin_navigation.php");
             }
         } else $page = 1;
         echo $page; ?>"/>
-        <button type="button" onclick="myFunction()">Đến trang</button>
+        <button type="button" onclick="myFunction()">Đến trang</button> </div>
         
         <script>
             function myFunction() {
-                var x = document.getElementById("mySelect").selectedIndex;
-                var y = document.getElementsByTagName("option")[x].value;
+                var xx = document.getElementById("mySelect2").selectedIndex;
+                var y = document.getElementsByTagName("option")[xx].value;
                 if (y == "Department") {
                     showDepartment();
                 }

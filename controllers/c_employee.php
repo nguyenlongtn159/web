@@ -124,11 +124,12 @@ class C_employee
     {
         //models
         $id = $_GET["id"];
+        if($id>0){
         $m_employee = new M_employee();
         //chua c� m� m�n n?u goi s? loi
         $employee = $m_employee->Read_employee_with_id($id); // ma mon o dau ??..
 
-        include("../views/employee/v_chi_tiet_employee.php");
+        include("../views/employee/v_chi_tiet_employee.php"); }
     }
 
     public function Name_employee()

@@ -1,38 +1,41 @@
-<a href="add_employee.php" class="btn btn-success">Thêm nhân viên</a><br><br>
+
 
 <?php
 //echo $_SERVER['PHP_SELF'];
-if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/employee.php') == 1) {
+if (substr_count($_SERVER['PHP_SELF'], '/admin/employee.php') == 1) {
     /*  if (isset($_SERVER['HTTP_REFERER']) && substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/employee_ajax.php') == 0 && substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/index.php') == 0){ */
     echo '<div class="form-inline">
             <label class="sr-only" for="DepartmentId"></label>
-                <select name="department" class="form-control" id="department_id">
-                    <option value="all" selected>All</option>';
+                <select name="department3" class="form-control" id="department_id3" onchange="Tim_employee2();">
+                    <option id="myOption" value="all" selected>All</option>';
 
     foreach ($departments as $phong) {
-        echo "<option value='$phong->name'>";
+        echo "<option id='myOption' value='$phong->name'>";
         echo $phong->name;
         echo "</option>";
-    }
+   }
 
 
     echo '</select>
                 <label class="sr-only" for="Name"></label>
                 <input name="name" onkeyup="Tim_employee2();" class="form-control" placeholder="Employee Name" type="text" id="name_employee" value="';
-    if (isset($_COOKIE["gttim"])) {
+   /* if (isset($_COOKIE["gttim"])) {
         echo $_COOKIE["gttim"];
-    }
-    echo '"/>
-            Sau khi thay đổi tên xong! Nhấn Enter để tìm!';
-} else echo " <span class='panel-body'><h4>Xem/tìm nhân viên theo department: <a href='employee.php'> Sử dụng tìm kiếm</a></h4></span>";
+    } */
+  if(isset($_SESSION["gttim"])) { echo $_SESSION["gttim"]; }
+    echo '"/>';
+           // print_r ($_SESSION);
+} //else
+ //echo " <span class='panel-body'><h4>Xem/tìm nhân viên theo department: <a href='employee.php'> Sử dụng tìm kiếm</a></h4></span>";
 ?>
 
 <script type="text/javascript" src="../public/js/thu_vien_ajax.js"></script>
 <!--   <button class="btn btn-success" onclick="Tim_employee2()">Search</button>
    <button class="btn btn-default btn-clear" type="button">Clear</button> -->
+  <br /><br /> <br /><a href="add_employee.php" class="btn btn-success">Thêm nhân viên</a><br />
 <h3>Danh sách nhân viên:</h3>
 
-<div id="hienthi2">
+<div id="hienthi">
 
     <h3 align="center" style="color:red"><?php if (isset($msg)) {
             echo $msg;

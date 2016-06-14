@@ -13,11 +13,17 @@ class M_user extends database
         return $this->loadAllRows();
     }
 
-    public function Read_user_with_name($name_register)
+  /* public function Read_user_with_name($name_register)
     {
         $sql = "select * from user where user_name='$name_register'";
         $this->setQuery($sql);
         return $this->loadRow();
+    } */
+    	  public function Read_user_with_name($name_register)
+    {  
+        $sql = "select * from user where user_name like '$name_register'";
+        $this->setQuery($sql);
+        return $this->loadAllRows();
     }
 
 

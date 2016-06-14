@@ -10,7 +10,7 @@
                 <tbody>
                 <tr>
                     <td>Tên</td>
-                    <td><?php echo $employee->name ?></td>
+                    <td><?php if(isset($employee)) echo $employee->name ?></td>
                 </tr>
                 <tr>
                     <td>Phòng ban</td>

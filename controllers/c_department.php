@@ -64,6 +64,11 @@ class C_department
             $manager = $_POST["manager"];
 
             $m_department = new M_department();
+            $check = $m_department->Read_all_department_with_name($name);
+            if(count($check ) !="") {
+                $_SESSION["msg4"] = "<span style='color:crimson'>&nbsp; Lỗi trùng tên !</span>";
+            }
+            else{
             $kq = $m_department->Add_department($name, $office_phone, $manager);
             if ($kq) // cap nhat thanh cong
             {
@@ -76,6 +81,7 @@ class C_department
             }
             //chuyen den trang danh sach mon an
             header("location:department.php");
+        }
         }
         //view
         include("../views/department/v_admin_add_department.php");
