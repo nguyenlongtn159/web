@@ -27,6 +27,13 @@ class M_user extends database
     }
 
 
+   public function Read_user_with_name_2($name_register)
+      {
+          $sql = "select * from user where user_name='$name_register'";
+          $this->setQuery($sql);
+          return $this->loadRow();
+    } 
+
     public function Login($name, $pass)
     {
         $sql = "select * from user where user_name='$name' and password = '$pass' ";
@@ -77,7 +84,7 @@ class M_user extends database
         $body = '';
 
         $m_user = new M_user();
-        $member = $m_user->Read_user_with_name($_POST["user_name"]);
+        $member = $m_user->Read_user_with_name_2($_POST["user_name"]);
 
         if ($member) {
             $m_email = $member->email; //lay email ra tu tai khoan
