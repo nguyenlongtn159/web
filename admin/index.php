@@ -57,7 +57,7 @@ require_once("../models/m_department.php");
 $m_department_2 = new M_department();
         $departments = $m_department_2->Read_full_department();
     foreach ($departments as $phong) {
-        echo "<option id='myOption' value='$phong->name'>";
+        echo "<option id='myOption' value='$phong->id'>";
         echo $phong->name;
         echo "</option>";
    }

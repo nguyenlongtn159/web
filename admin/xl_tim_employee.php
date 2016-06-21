@@ -1,9 +1,10 @@
+<head><meta charset="utf-8"></head>
 <?php
 $gttim = null;
 $depart = null;
 require_once("xac_thuc.php");
 if(isset($_SERVER['HTTP_REFERER'])){
-    if (substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/xl_tim_employee.php') == 1 || (substr_count($_SERVER['HTTP_REFERER'], 'index.php') == 0 && substr_count($_SERVER['HTTP_REFERER'], '/ql_nhan_vien/admin/employee.php') == 0)) {
+    if (substr_count($_SERVER['HTTP_REFERER'], 'admin/xl_tim_employee.php') == 1 || (substr_count($_SERVER['HTTP_REFERER'], 'index.php') == 0 && substr_count($_SERVER['HTTP_REFERER'], 'admin/employee.php') == 0)) {
 include_once("../views/navigation/begin_navigation.php"); }}
 class Tim_kiem
 {
@@ -98,3 +99,4 @@ $t = new Tim_kiem();
 
 ?>
 <link rel="stylesheet" type="text/css" href="../public/bootstrap/bootstrap.min.css">
+
