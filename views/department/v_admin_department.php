@@ -40,7 +40,7 @@ Danh sách phòng ban:
 
         }
     }
-    if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/department_ajax.php') == 0) {
+    if (substr_count($_SERVER['PHP_SELF'], 'admin/department_ajax.php') == 0) {
         echo "</table><div class='col-md-4'>" . $lst . "</div>";
     } //echo "</table>".$_SERVER['PHP_SELF'];
     else {

@@ -74,7 +74,7 @@ if (substr_count($_SERVER['PHP_SELF'], '/admin/employee.php') == 1) {
             }
         }
 
-        if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/employee_ajax.php') == 0) {
+        if (substr_count($_SERVER['PHP_SELF'], 'admin/employee_ajax.php') == 0) {
             echo "</table><div class='col-md-4'>" . $lst . "</div>";
         } else {
 

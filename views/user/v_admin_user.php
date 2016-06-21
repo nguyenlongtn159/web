@@ -1,4 +1,4 @@
-  <?php if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/user_ajax.php') == 0) {include_once("../views/navigation/begin_navigation.php");} ?> 
+  <?php if (substr_count($_SERVER['PHP_SELF'], 'admin/user_ajax.php') == 0) {include_once("../views/navigation/begin_navigation.php");} ?> 
 <h3 align="center" style="color:red"> <?php if(isset($msg)){echo $msg;} ?> </h3>
 <link rel="stylesheet" type="text/css" href="../public/bootstrap/bootstrap.min.css">
 
@@ -30,7 +30,7 @@ foreach($users as $user)
 	
 }
 }
-    if (substr_count($_SERVER['PHP_SELF'], '/ql_nhan_vien/admin/user_ajax.php') == 0) {
+    if (substr_count($_SERVER['PHP_SELF'], 'admin/user_ajax.php') == 0) {
         echo "</table><div class='col-md-4'>" . $lst . "</div>";
     } //echo "</table>".$_SERVER['PHP_SELF'];
     else {
