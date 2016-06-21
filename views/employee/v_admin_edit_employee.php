@@ -37,10 +37,11 @@
                     <option>&nbsp;</option>
                     <?php
                     foreach ($departments as $phong) {
-                        if($employee->department==$phong->name){
-                            echo "<option selected>";
+                        echo "<option ";
+                        if($employee->department==$phong->id){
+                            echo "selected value='".$phong->id."'>";
                         } else{
-                            echo "<option>";
+                            echo "value='".$phong->id."'>";
                         }
                         echo $phong->name;
                         echo "</option>";

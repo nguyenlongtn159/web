@@ -128,7 +128,8 @@ class C_employee
         $m_employee = new M_employee();
         //chua c� m� m�n n?u goi s? loi
         $employee = $m_employee->Read_employee_with_id($id); // ma mon o dau ??..
-
+         include_once("../models/m_department.php");
+            $m_employee_3 = new M_department();
         include("../views/employee/v_chi_tiet_employee.php"); }
     }
 

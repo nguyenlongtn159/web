@@ -10,7 +10,7 @@ if (substr_count($_SERVER['PHP_SELF'], '/admin/employee.php') == 1) {
                     <option id="myOption" value="all" selected>All</option>';
 
     foreach ($departments as $phong) {
-        echo "<option id='myOption' value='$phong->name'>";
+        echo "<option id='myOption' value='$phong->id'>";
         echo $phong->name;
         echo "</option>";
    }
@@ -65,7 +65,7 @@ if (substr_count($_SERVER['PHP_SELF'], '/admin/employee.php') == 1) {
             foreach ($employee as $nhan_vien) {
                 echo "<tr><td>" . $nhan_vien->id . "</td>";
                 echo "<td> <a href='chi_tiet_employee.php?id=".$nhan_vien->id."'>" . $nhan_vien->name . "</a></td>";
-                echo "<td> " . $nhan_vien->department . "</td>";
+                echo "<td> " .$m_department_2->Get_name_by_id( $nhan_vien->department). "</td>";
                 echo "<td>" . $nhan_vien->job_title . "</td>";
                 echo "<td>" . $nhan_vien->email . "</td>";
                 echo "<td><img class='empl_img' src='../public/images/employee/" . $nhan_vien->hinh . "' height='150px' /></td>";

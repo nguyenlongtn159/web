@@ -67,10 +67,14 @@ echo '<br /><a href="add_employee.php" class="btn btn-success">Thêm nhân viên
         } else if ($page > $pages) {
             $page = $pages;
         } else {
-            foreach ($employee2 as $nhan_vien) {
+            include_once("../models/m_department.php");
+            $m_employee_3 = new M_department();
+            
+            foreach ($employee2 as $nhan_vien) { 
+                
                 echo "<tr><td>" . $nhan_vien->id . "</td>";
                 echo "<td> <a href='chi_tiet_employee.php?id=".$nhan_vien->id."'>" . $nhan_vien->name . "</a></td>";
-                echo "<td> " . $nhan_vien->department . "</td>";
+                echo "<td> " .$m_employee_3->Get_name_by_id( $nhan_vien->department). "</td>";
                 echo "<td>" . $nhan_vien->job_title . "</td>";
                 echo "<td>" . $nhan_vien->email . "</td>";
                 echo "<td><img class='empl_img' src='../public/images/employee/" . $nhan_vien->hinh . "' height='150px' /></td>";

@@ -63,4 +63,15 @@ class M_department extends database
 		$param = array($id);
 		return $this->execute($param); // mang tham so (options)
 	}
+      public function Get_name_by_id($id){
+        $sql = "select * from department where id='$id'";
+        $this->setQuery($sql);
+        $department= $this->loadRow();
+        if(empty($department->name)){
+            $result="";
+        }else{
+            $result= $department->name;
+        }
+        return $result;
+    }
 }

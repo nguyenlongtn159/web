@@ -14,7 +14,7 @@
                 </tr>
                 <tr>
                     <td>Phòng ban</td>
-                    <td><?php echo $employee->department; ?></td>
+                    <td><?php echo $m_employee_3->Get_name_by_id($employee->department); ?></td>
                 </tr>
                 <tr>
                     <td>Chức vụ</td>

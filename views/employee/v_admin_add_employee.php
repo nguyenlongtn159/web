@@ -26,7 +26,7 @@ function CheckAdd()
                     <option></option>
                     <?php
                     foreach ($departments as $phong) {
-                        echo "<option>";
+                        echo "<option value='".$phong->id."'>";
                         echo $phong->name;
                         echo "</option>";
                     }
